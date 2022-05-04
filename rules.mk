@@ -1,5 +1,22 @@
-MOUSEKEY_ENABLE = yes    # Mouse keys
 RGBLIGHT_ENABLE = yes    # Enable WS2812 RGB underlight.
 OLED_ENABLE     = yes
 OLED_DRIVER     = SSD1306
 LTO_ENABLE      = yes
+
+MOUSEKEY_ENABLE = no # Mouse keys
+COMMAND_ENABLE =no
+EXTRAKEY_ENABLE = yes # Audio control and System control
+TAP_DANCE_ENABLE = yes
+CONSOLE_ENABLE=no
+AUDIO_ENABLE=no
+#  KEY_OVERRIDE_ENABLE = yes
+
+# Saves a bunch of memory
+EXTRAFLAGS += -flto
+CONSOLE_ENABLE = no
+VERBOSE = no
+DEBUG_MATRIX_SCAN_RATE  = no
+DEBUG_MATRIX = no
+MAGIC_ENABLE = no
+SPACE_CADET_ENABLE = no
+GRAVE_ESC_ENABLE = no

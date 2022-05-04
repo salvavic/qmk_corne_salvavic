@@ -2,7 +2,7 @@
 
 ## Comando compilacion
 - Compilar y flash:
-  `qmk flash -kb kprepublic/bm40hsrgb -km salvavic`
+  `qmk flash -kb crkbd -km salvavic`
 - Solo compilar:
   `qmk compile -kb kprepublic/bm40hsrgb -km salvavic`
 

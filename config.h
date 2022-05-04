@@ -28,8 +28,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // #define MASTER_RIGHT
 // #define EE_HANDS
 
-//#define TAPPING_FORCE_HOLD
-//#define TAPPING_TERM 100
+#undef TAPPING_TERM
+#define TAPPING_TERM 150
+#define LONG_TAPPING_TERM 50
+#define TAPPING_TERM_PER_KEY
+
+#define PERMISSIVE_HOLD_PER_KEY
+#define IGNORE_MOD_TAP_INTERRUPT_PER_KEY
+#define TAPPING_FORCE_HOLD_PER_KEY
+
+#undef TAPPING_TOGGLE
+#define TAPPING_TOGGLE 2
 
 #ifdef RGBLIGHT_ENABLE
     #define RGBLIGHT_EFFECT_BREATHING
