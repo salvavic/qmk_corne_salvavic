@@ -19,8 +19,8 @@ enum keycodes {
     FNDEL,
     FNBSPC,
     SIMBO,
-    SIMBOENT,
-    ESPACENT,
+    SIMBOSPC,
+    ESPACESP,
     MOUSE,
     NUMERIC,
     ADJUST,
@@ -40,11 +40,11 @@ enum {
 #define FNBSPC LT(_FN, KC_BSPC)
 
 #define SIMBO MO(_SIMBOLOS)
-#define SIMBOENT LT(_SIMBOLOS, KC_ENTER)
-#define ESPACENT LT(_SIMBOLOS, KC_SPC)
+#define SIMBOSPC LT(_SIMBOLOS, KC_SPC)
+#define ESPACESP LT(_SIMBOLOS, KC_SPC)
 
 #define MOUSE MO(_MOUSE)
-#define NUMERIC MO(_NUMERICO)
+#define NUMERIC LT(_NUMERICO,KC_ENTER)
 
 // COLEMAK - home row mods
 #define HOMEQ_A LGUI_T(KC_A)
@@ -67,6 +67,8 @@ enum {
 
 #define LSA_T(kc) MT(MOD_LSFT | MOD_LALT, kc)
 
+
+
 qk_tap_dance_action_t tap_dance_actions[] = {
   [TD_PC] = ACTION_TAP_DANCE_DOUBLE(KC_COMM, S(KC_COMM)),
   [TD_MAY] = ACTION_TAP_DANCE_DOUBLE(KC_LSFT, KC_CAPS),
@@ -82,7 +84,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
     TD(TD_MAY), KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_N,    KC_M, TD(TD_PC),  KC_DOT, KC_SLSH,  RSFT_T(KC_ENT),
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          NUMERIC, FNDEL,  SIMBOENT,     ESPACENT, FNBSPC, NUMERIC
+                                          NUMERIC, FNDEL,  SIMBOSPC,     ESPACESP, FNBSPC, NUMERIC
                                       //`--------------------------'  `--------------------------'
   ),
 
@@ -276,28 +278,29 @@ oled_rotation_t oled_init_user(oled_rotation_t rotation) {
   return rotation;
 }
 
-#define L_BASE 0
-#define L_LOWER 2
-#define L_RAISE 4
-#define L_ADJUST 8
+#define L_QWERTY 0
+#define L_SIMBOLOS 8
+#define L_FN 4
+#define L_NUMERICO 32
+#define L_ADJUST 64
 
 void oled_render_layer_state(void) {
     oled_write_P(PSTR("Layer: "), false);
     switch (layer_state) {
-        case L_BASE:
-            oled_write_ln_P(PSTR("Default"), false);
+        case L_QWERTY:
+            oled_write_ln_P(PSTR("QWERTY"), false);
             break;
-        case L_LOWER:
-            oled_write_ln_P(PSTR("Lower"), false);
+        case L_SIMBOLOS:
+            oled_write_ln_P(PSTR("SIMB"), false);
             break;
-        case L_RAISE:
-            oled_write_ln_P(PSTR("Raise"), false);
+        case L_FN:
+            oled_write_ln_P(PSTR("FN"), false);
+            break;
+        case L_NUMERICO:
+            oled_write_ln_P(PSTR("NUM"), false);
             break;
         case L_ADJUST:
-        case L_ADJUST|L_LOWER:
-        case L_ADJUST|L_RAISE:
-        case L_ADJUST|L_LOWER|L_RAISE:
-            oled_write_ln_P(PSTR("Adjust"), false);
+            oled_write_ln_P(PSTR("AJUSTE"), false);
             break;
     }
 }
