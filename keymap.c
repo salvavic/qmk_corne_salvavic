@@ -116,7 +116,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
       _______, _______, _______, _______, _______, _______,                      _______, KC_7,    KC_8,    KC_9,    KC_PGUP, KC_HOME,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      _______, _______, KC_PGDN, KC_UP, KC_PGUP, _______,                       _______,  KC_4,    KC_5,    KC_6,    KC_PGDN, KC_END,
+      _______, _______, KC_PGUP, KC_UP, KC_PGDN, _______,                       _______,  KC_4,    KC_5,    KC_6,    KC_PGDN, KC_END,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       _______, KC_HOME, KC_LEFT, KC_DOWN, KC_RIGHT, KC_END,                      _______, KC_1,    KC_2,    KC_3,   _______, _______,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
@@ -129,7 +129,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         RESET, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_DEL,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       RGB_TOG, RGB_HUI, RGB_SAI, RGB_VAI, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_VOLU, QWERTY,
-  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+  //|--------+--------+--------+------/!1111111111111111111111111111111111111111111111111111111111--+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       RGB_MOD, RGB_HUD, RGB_SAD, RGB_VAD, XXXXXXX, XXXXXXX,                      XXXXXXX, KC_MPRV, KC_MNXT, KC_MPLY, KC_VOLD, COLEMA,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                           KC_LGUI, _______,  KC_SPC,     KC_ENT, _______, KC_MUTE
@@ -150,8 +150,47 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 
 layer_state_t layer_state_set_user(layer_state_t state) {
+    rgblight_set_layer_state(0, layer_state_cmp(state, _QWERTY));
+    rgblight_set_layer_state(1, layer_state_cmp(state, _FN));
+    rgblight_set_layer_state(2, layer_state_cmp(state, _SIMBOLOS));
+    rgblight_set_layer_state(3, layer_state_cmp(state, _NUMERICO));
+    // return state;
+
   return update_tri_layer_state(state, _SIMBOLOS, _FN, _ADJUST);
 }
+
+const rgblight_segment_t PROGMEM my_raise_layer[]    = RGBLIGHT_LAYER_SEGMENTS({0, RGBLED_NUM, HSV_BLUE});
+const rgblight_segment_t PROGMEM my_lower_layer[]    = RGBLIGHT_LAYER_SEGMENTS({0, RGBLED_NUM, HSV_ORANGE});
+const rgblight_segment_t PROGMEM my_adjust_layer[]   = RGBLIGHT_LAYER_SEGMENTS({0, RGBLED_NUM, HSV_RED});
+const rgblight_segment_t PROGMEM my_capslock_layer[] = RGBLIGHT_LAYER_SEGMENTS({0, RGBLED_NUM, HSV_GREEN});
+const rgblight_segment_t PROGMEM my_qwerty_layer[]   =
+RGBLIGHT_LAYER_SEGMENTS(
+    {0, 6, HSV_WHITE},
+    {6, 1, HSV_CYAN},
+    {7, 6, HSV_WHITE},
+    {13, 2, HSV_CYAN},
+    {15, 9, HSV_WHITE},
+    {24, 3, HSV_CYAN}
+    );
+// Now define the array of layers. Later layers take precedence
+const rgblight_segment_t* const PROGMEM my_rgb_layers[] =
+RGBLIGHT_LAYERS_LIST(
+            my_qwerty_layer,
+            my_raise_layer,
+            my_lower_layer,
+            my_adjust_layer,
+            my_capslock_layer
+        );
+void keyboard_post_init_user(void) {
+    rgblight_layers = my_rgb_layers;
+}
+
+// Activate rgb layer for caps when capslock is enabled
+bool led_update_user(led_t led_state) {
+    rgblight_set_layer_state(4, led_state.caps_lock);
+    return true;
+}
+
 
 bool get_tapping_force_hold(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
@@ -304,7 +343,6 @@ void oled_render_layer_state(void) {
             break;
     }
 }
-
 
 char keylog_str[24] = {};
 
