@@ -32,10 +32,10 @@
     #define RGBLIGHT_HUE_STEP 10
     #define RGBLIGHT_SAT_STEP 17
     #define RGBLIGHT_VAL_STEP 17
-    #define RGBLIGHT_SLEEP
-    #define RGBLIGHT_SPLIT
+    #define RGBLIGHT_SLEEP 60
+    // #define RGBLIGHT_SPLIT
     #define RGBLIGHT_DEFAULT_SAT 100
-    #define RGBLIGHT_DEFAULT_HUE 1
+    #define RGBLIGHT_DEFAULT_HUE 0
 #endif
 
 #define OLED_FONT_H "keyboards/crkbd/lib/glcdfont.c"
