@@ -17,8 +17,8 @@ jobs:
         run: |
           git clone https://github.com/qmk/qmk_firmware.git
           cd qmk_firmware
-          git submodule update --init --recursive
           git submodule add https://github.com/salvavic/salvavic_qmk_bm40.git keyboards/kprepublic/bm40hsrgb/keymaps/salvavic
+          git submodule update --init --recursive
 
       - name: Build firmware
         run: |
