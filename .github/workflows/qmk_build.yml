@@ -5,6 +5,7 @@ on: [push, pull_request, workflow_dispatch]
 jobs:
   build:
     runs-on: ubuntu-latest
+    container: qmkfm/qmk_cli
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
