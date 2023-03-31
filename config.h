@@ -2,7 +2,6 @@
 #define HOLD_ON_OTHER_KEY_PRESS_PER_KEY
 
 #define MASTER_LEFT
-// #define MASTER_RIGHT
 // #define EE_HANDS
 
 #undef TAPPING_TERM
