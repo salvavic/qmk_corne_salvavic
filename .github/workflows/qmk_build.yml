@@ -35,9 +35,9 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: firmware_bin
-          path: qmk_firmware/.build/crkbd_salvavic.bin
+          path: qmk_firmware/.build/crkbd_rev1_salvavic.hex
 
       - uses: actions/upload-artifact@v2
         with:
           name: firmware_uf2
-          path: qmk_firmware/.build/crkbd_salvavic.uf2
+          path: qmk_firmware/.build/crkbd_rev1_salvavic.uf2
