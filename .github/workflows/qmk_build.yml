@@ -12,32 +12,32 @@ jobs:
 
       - name: Install dependencies
         run: |
-          sudo apt-get -y install git gcc-arm-none-eabi binutils-arm-none-eabi libnewlib-arm-none-eabi build-essential dfu-util
+          apt-get -y install git gcc-arm-none-eabi binutils-arm-none-eabi libnewlib-arm-none-eabi build-essential dfu-util
 
       - name: Clone QMK firmware repository
         run: |
           git clone https://github.com/qmk/qmk_firmware.git
           cd qmk_firmware
-          git submodule add https://github.com/salvavic/salvavic_qmk_bm40.git keyboards/kprepublic/bm40hsrgb/keymaps/salvavic
+          git submodule add https://github.com/salvavic/qmk_corne_salvavic.git keyboards/crkbd/keymaps/salvavic
           git submodule update --init --recursive
 
       - name: Build firmware
         run: |
           cd qmk_firmware
-          make kprepublic/bm40hsrgb:salvavic
+          make crkbd:salvavic
 
       - name: Generate UF2 firmware
         run: |
           cd qmk_firmware
-          make kprepublic/bm40hsrgb:salvavic:uf2
+          make crkbd:salvavic:uf2
 
       - name: Upload firmware artifacts
         uses: actions/upload-artifact@v2
         with:
           name: firmware_bin
-          path: qmk_firmware/.build/kprepublic_bm40hsrgb_salvavic.bin
+          path: qmk_firmware/.build/crkbd_salvavic.bin
 
       - uses: actions/upload-artifact@v2
         with:
           name: firmware_uf2
-          path: qmk_firmware/.build/kprepublic_bm40hsrgb_salvavic.uf2
+          path: qmk_firmware/.build/crkbd_salvavic.uf2
