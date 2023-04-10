@@ -8,7 +8,7 @@ jobs:
     container: qmkfm/qmk_cli
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Install dependencies
         run: |
@@ -32,12 +32,12 @@ jobs:
           make crkbd:salvavic:uf2
 
       - name: Upload firmware artifacts
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: firmware_bin
           path: qmk_firmware/.build/crkbd_rev1_salvavic.hex
 
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v3
         with:
           name: firmware_uf2
           path: qmk_firmware/.build/crkbd_rev1_salvavic.uf2
