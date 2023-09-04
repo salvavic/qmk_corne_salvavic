@@ -20,7 +20,6 @@ enum keycodes {
     FNBSPC,
     SIMBO,
     SIMBOSPC,
-    ESPACESP,
     MOUSE,
     NUMERIC,
     ADJUST,
@@ -41,7 +40,6 @@ enum {
 
 #define SIMBO MO(_SIMBOLOS)
 #define SIMBOSPC LT(_SIMBOLOS, KC_SPC)
-#define ESPACESP LT(_SIMBOLOS, KC_SPC)
 
 #define MOUSE MO(_MOUSE)
 #define NUMERIC LT(_NUMERICO,KC_ENTER)
@@ -84,7 +82,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
     TD(TD_MAY), KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_N,    KC_M, TD(TD_PC),  KC_DOT, KC_SLSH,  RSFT_T(KC_ENT),
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          NUMERIC, FNDEL,  SIMBOSPC,     ESPACESP, FNBSPC, NUMERIC
+                                          NUMERIC, FNDEL,  SIMBOSPC,     SIMBOSPC, FNDEL, NUMERIC
                                       //`--------------------------'  `--------------------------'
   ),
 
@@ -96,7 +94,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
 //     TD(TD_MAY), KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_K,    KC_M, TD(TD_PC),  KC_DOT, KC_SLSH,  RSFT_T(KC_ENT),
 //   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-//                                           NUMERIC, FNDEL,  SIMBOSPC,     ESPACESP, FNBSPC, NUMERIC
+//                                           NUMERIC, FNDEL,  SIMBOSPC,     SIMBOSPC, FNDEL, NUMERIC
 //                                       //`--------------------------'  `--------------------------'
 //   ),
 
@@ -414,7 +412,9 @@ bool oled_task_user(void) {
         oled_render_layer_state();
         oled_render_keylog();
     } else {
-        oled_render_logo();
+        //oled_render_logo();
+        oled_render_layer_state();
+        oled_render_keylog();
     }
     return false;
 }
