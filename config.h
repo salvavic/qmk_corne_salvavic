@@ -5,7 +5,7 @@
 // #define EE_HANDS
 
 #undef TAPPING_TERM
-#define TAPPING_TERM 200
+#define TAPPING_TERM 100
 #define LONG_TAPPING_TERM 50
 #define TAPPING_TERM_PER_KEY
 
