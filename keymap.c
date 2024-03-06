@@ -32,6 +32,8 @@ enum {
     TD_MAY,
 };
 
+#define RGBLED_NUM 5
+
 #define QWERTY DF(_QWERTY)
 #define COLEMA DF(_COLEMAK)
 #define FN MO(_FN)
