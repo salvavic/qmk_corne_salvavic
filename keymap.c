@@ -82,7 +82,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       KC_TAB, HOME_A,   HOME_S,  HOME_D, HOME_F,   KC_G,                         KC_H,    HOME_J,  HOME_K,  HOME_L, HOME_NT, KC_QUOT,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-    TD(TD_MAY), KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_N,    KC_M, TD(TD_PC),  KC_DOT, KC_SLSH,  RSFT_T(KC_ENT),
+    TD(TD_MAY), KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_N,    KC_M, TD(TD_PC),  KC_DOT, KC_SLSH,  LALT_T(KC_ENT),
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                           NUMERIC, FNDEL,  SIMBOSPC,     SIMBOSPC, FNDEL, NUMERIC
                                       //`--------------------------'  `--------------------------'
