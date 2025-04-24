@@ -34,7 +34,7 @@ jobs:
       - name: Generate json
         run: |
           cd qmk_firmware
-          qmk c2json -km salvavic -kb crkbd/rev1 -kb keymap.json
+          qmk c2json -km salvavic -kb crkbd/rev1 keymap.json
 
       - name: Upload firmware artifacts
         uses: actions/upload-artifact@v4
