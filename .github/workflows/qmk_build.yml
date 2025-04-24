@@ -31,6 +31,10 @@ jobs:
         run: |
           cd qmk_firmware
           make crkbd:salvavic:uf2
+      - name: Generate json
+        run: |
+          cd qmk_firmware
+          qmk c2json -km salvavic -kb crkbd/rev1 -kb keymap.json
 
       - name: Upload firmware artifacts
         uses: actions/upload-artifact@v4
@@ -42,3 +46,8 @@ jobs:
         with:
           name: firmware_uf2
           path: qmk_firmware/.build/crkbd_rev1_salvavic.uf2
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: json
+          path: qmk_firmware/.build/keymap.json
